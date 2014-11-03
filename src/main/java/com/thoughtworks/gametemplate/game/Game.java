@@ -10,8 +10,7 @@ import java.awt.event.ActionListener;
 import static com.thoughtworks.gametemplate.game.Vector2f.Zero;
 import static com.thoughtworks.gametemplate.render.Sprite.fromFile;
 
-public class Game implements ActionListener {
-    private final Timer timer;
+public class Game {
     private World world;
     private Window window;
     private Renderer renderer;
@@ -22,25 +21,19 @@ public class Game implements ActionListener {
         this.window = window;
         this.user = user;
         this.renderer = renderer;
-        timer = new Timer(20, this);
-        timer.start();
     }
 
     public void run() throws InterruptedException {
         window.activate();
 
+        Thread.sleep(500);
         while(!user.hasQuit()){
-            Thread.sleep(1);
+            world.update(this);
+            window.repaint();
+            Thread.sleep(25);
         }
 
-        timer.stop();
         window.deactivate();
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        world.update(this);
-        window.repaint();
     }
 
     public Entity spawnEntity(EntityType type, Vector2f position) {
