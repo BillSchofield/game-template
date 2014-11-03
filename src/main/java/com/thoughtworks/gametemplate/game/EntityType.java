@@ -3,7 +3,7 @@ package com.thoughtworks.gametemplate.game;
 public enum EntityType {
     Player("playerShip.png"),
     Enemy("enemyShip.png"),
-    Shot("shot.png");
+    Projectile("shot.png");
 
     protected String image;
 

@@ -7,8 +7,8 @@ import static com.thoughtworks.gametemplate.game.Vector2f.Zero;
 
 public class PlayerMoveKeyListener implements KeyListener {
     private Entity player;
-    private Vector2f left = new Vector2f(-1.0f, 0.0f);
-    private Vector2f right = new Vector2f(1.0f, 0.0f);
+    private Vector2f left = new Vector2f(-5.0f, 0.0f);
+    private Vector2f right = new Vector2f(5.0f, 0.0f);
 
     public PlayerMoveKeyListener(Entity player) {
 
@@ -17,6 +17,9 @@ public class PlayerMoveKeyListener implements KeyListener {
 
     @Override
     public void keyTyped(KeyEvent event) {
+        if (event.getKeyChar() == ' ') {
+            player.fire();
+        }
     }
 
     @Override

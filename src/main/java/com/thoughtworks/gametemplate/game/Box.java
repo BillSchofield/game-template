@@ -16,4 +16,8 @@ public class Box {
             this.max.getX() > that.max.getX() &&
             this.max.getY() > that.max.getY();
     }
+
+    public boolean contains(Vector2f point) {
+        return contains(new Box(point, point));
+    }
 }

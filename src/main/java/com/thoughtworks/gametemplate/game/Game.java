@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import static com.thoughtworks.gametemplate.game.Vector2f.Zero;
 import static com.thoughtworks.gametemplate.render.Sprite.fromFile;
 
 public class Game implements ActionListener {
@@ -21,7 +22,7 @@ public class Game implements ActionListener {
         this.window = window;
         this.user = user;
         this.renderer = renderer;
-        timer = new Timer(5, this);
+        timer = new Timer(20, this);
         timer.start();
     }
 
@@ -38,15 +39,20 @@ public class Game implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        world.update();
+        world.update(this);
         window.repaint();
     }
 
     public Entity spawnEntity(EntityType type, Vector2f position) {
         Sprite sprite = fromFile(type.image(), position);
         renderer.addSprite(sprite);
-        Entity entity = new Entity(position, sprite);
+        Entity entity = new Entity(position, Zero, sprite, this, type);
         world.spawn(entity);
         return entity;
+    }
+
+    public void remove(Entity entity) {
+        world.remove(entity);
+        renderer.remove(entity.sprite());
     }
 }

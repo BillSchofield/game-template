@@ -10,9 +10,14 @@ public class Vector2fTest {
 
     @Test
     public void shouldMakeVectorTwiceAsLongWhenScaledBy2() {
+        // Arrange/setup/Given
         Vector2f vector = new Vector2f(1, 2);
         Vector2f vectorTimes2 = new Vector2f(2, 4);
 
-        assertThat(vector.scale(2), is(vectorTimes2));
+        // Action/verb/When
+        Vector2f scale = vector.scale(2);
+
+        // Assert/verify/Then
+        assertThat(scale, is(vectorTimes2));
     }
 }
