@@ -11,13 +11,22 @@ public class Box {
 
     public boolean contains(Box that) {
         return
-            this.min.getX() < that.min.getX() &&
-            this.min.getY() < that.min.getY() &&
-            this.max.getX() > that.max.getX() &&
-            this.max.getY() > that.max.getY();
+            this.min.x() < that.min.x() &&
+            this.min.y() < that.min.y() &&
+            this.max.x() > that.max.x() &&
+            this.max.y() > that.max.y();
     }
 
     public boolean contains(Vector2f point) {
         return contains(new Box(point, point));
+    }
+
+    public boolean intersects(Box that) {
+        return !(
+                that.min.x() > this.max.x() ||
+                that.max.x() < this.min.x() ||
+                that.min.y() > this.max.y() ||
+                that.max.y() < this.min.y()
+        );
     }
 }

@@ -13,14 +13,12 @@ import static com.thoughtworks.gametemplate.render.Sprite.fromFile;
 public class Game {
     private World world;
     private Window window;
-    private Renderer renderer;
     private QuitKeyListener user;
 
-    public Game(World world, Window window, Renderer renderer, QuitKeyListener user) {
+    public Game(World world, Window window, QuitKeyListener user) {
         this.world = world;
         this.window = window;
         this.user = user;
-        this.renderer = renderer;
     }
 
     public void run() throws InterruptedException {
@@ -34,18 +32,5 @@ public class Game {
         }
 
         window.deactivate();
-    }
-
-    public Entity spawnEntity(EntityType type, Vector2f position) {
-        Sprite sprite = fromFile(type.image(), position);
-        renderer.addSprite(sprite);
-        Entity entity = new Entity(position, Zero, sprite, this, type);
-        world.spawn(entity);
-        return entity;
-    }
-
-    public void remove(Entity entity) {
-        world.remove(entity);
-        renderer.remove(entity.sprite());
     }
 }

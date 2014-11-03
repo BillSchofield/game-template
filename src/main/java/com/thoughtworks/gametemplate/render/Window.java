@@ -28,7 +28,7 @@ public class Window extends JFrame {
     }
 
     public void activate() {
-        setSize(size.getX(), size.getY());
+        setSize(size.x(), size.y());
         setLocation(0, 0);
         setVisible(true);
         setDefaultCloseOperation(exitOnClose);

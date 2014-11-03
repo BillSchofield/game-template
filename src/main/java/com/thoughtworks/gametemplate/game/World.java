@@ -1,71 +1,74 @@
 package com.thoughtworks.gametemplate.game;
 
-import java.util.ArrayList;
+import com.thoughtworks.gametemplate.render.Renderer;
+import com.thoughtworks.gametemplate.render.Sprite;
+
 import java.util.List;
 
 import static com.google.common.collect.Lists.newArrayList;
-import static com.thoughtworks.gametemplate.game.EntityType.Enemy;
-import static com.thoughtworks.gametemplate.game.EntityType.Projectile;
+import static com.thoughtworks.gametemplate.game.Vector2f.Zero;
+import static com.thoughtworks.gametemplate.render.Sprite.fromFile;
 
 public class World {
     private List<Entity> entities;
     private Box bounds;
+    private Collisions collisions;
+    private final List<Entity> graveYard;
+    private Renderer renderer;
 
-    public World(Box bounds, List<Entity> entities) {
+    public World(Box bounds, List<Entity> entities, Collisions collisions, List<Entity> graveYard, Renderer renderer) {
         this.entities = entities;
         this.bounds = bounds;
+        this.collisions = collisions;
+        this.graveYard = graveYard;
+        this.renderer = renderer;
     }
 
     public void update(Game game) {
-        List<Entity> projectiles = entitiesByType(Projectile);
-        collideProjectilesWithEnemies(game, projectiles);
+        destroyGraveyard(game);
 
-        for (Entity projectile : projectiles) {
-            projectile.move();
-        }
+        collideProjectilesWithEnemies(game);
 
-        for (Entity player : entities) {
-            Box entityBounds = player.desiredLocation();
-            if (bounds.contains(entityBounds)){
-                player.move();
-            }
+        for (Entity entity : entities) {
+            entity.move();
         }
     }
 
-    private void collideProjectilesWithEnemies(Game game, List<Entity> projectiles) {
-        List<Entity> graveYard = newArrayList();
-        for (Entity projectile : projectiles) {
-            Vector2f projectilePosition = projectile.position();
-            List<Entity> enemies = entitiesByType(Enemy);
-            for (Entity enemy : enemies) {
-                Box enemyBounds = enemy.desiredLocation();
-                if (enemyBounds.contains(projectilePosition)){
-                    graveYard.add(enemy);
+    private void destroyGraveyard(Game game) {
+        for (Entity deadEnemy : graveYard) {
+            remove(deadEnemy);
+        }
+    }
+
+    private void collideProjectilesWithEnemies(Game game) {
+        for (Entity firstEntity : entities) {
+            Box firstEntityBounds = firstEntity.desiredLocation();
+            for (Entity secondEntity : entities) {
+                Box secondEntityBounds = secondEntity.desiredLocation();
+                if (firstEntityBounds.intersects(secondEntityBounds)){
+                    Collision collision = collisions.find(firstEntity, secondEntity);
+                    collision.respond(firstEntity, secondEntity);
                 }
             }
         }
 
-        for (Entity deadEnemy : graveYard) {
-            game.remove(deadEnemy);
-        }
     }
 
-    private List<Entity> entitiesByType(EntityType type) {
-        List<Entity> filteredResult = newArrayList();
-        for (Entity entity : entities) {
-            if (entity.isType(type)){
-                filteredResult.add(entity);
-            }
-        }
-
-        return filteredResult;
+    public boolean contains(Box box) {
+        return bounds.contains(box);
     }
 
-    public void spawn(Entity entity) {
+    public Entity spawnEntity(EntityType type, Vector2f position) {
+        Sprite sprite = fromFile(type.image(), position);
+        renderer.addSprite(sprite);
+        Entity entity = type.createInstance(position, Zero, sprite, this);
         entities.add(entity);
+        return entity;
     }
 
     public void remove(Entity entity) {
         entities.remove(entity);
+        renderer.remove(entity.sprite());
     }
+
 }

@@ -20,7 +20,7 @@ public class Sprite {
     }
 
     public void draw(Graphics graphics) {
-        graphics.drawImage(image, position.getX(), position.getY(), null);
+        graphics.drawImage(image, position.x(), position.y(), null);
     }
 
     public void move(Vector2f position) {

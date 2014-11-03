@@ -6,14 +6,14 @@ public class Entity {
     private Vector2f position;
     private Vector2f velocity;
     private Sprite sprite;
-    private Game game;
+    protected World world;
     private EntityType type;
 
-    public Entity(Vector2f position, Vector2f velocity, Sprite sprite, Game game, EntityType type) {
+    public Entity(Vector2f position, Vector2f velocity, Sprite sprite, World world, EntityType type) {
         this.position = position;
         this.velocity = velocity;
         this.sprite = sprite;
-        this.game = game;
+        this.world = world;
         this.type = type;
     }
 
@@ -34,12 +34,8 @@ public class Entity {
 
     public void fire() {
         Vector2f spawnLocation = position.plus(sprite.width()/2, 0);
-        Entity missile = game.spawnEntity(EntityType.Projectile, spawnLocation);
+        Entity missile = world.spawnEntity(EntityType.Projectile, spawnLocation);
         missile.velocity(new Vector2f(0, -10));
-    }
-
-    public Vector2f position() {
-        return position;
     }
 
     public Sprite sprite() {
