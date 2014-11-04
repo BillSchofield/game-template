@@ -1,38 +1,58 @@
 package com.thoughtworks.gametemplate.game;
 
-import com.thoughtworks.gametemplate.render.Sprite;
+import com.thoughtworks.gametemplate.render.ImageLoader;
 
-import static com.thoughtworks.gametemplate.game.Vector2f.Zero;
+import java.awt.Image;
+
 
 public enum EntityType {
     Player("playerShip.png") {
         @Override
-        public Entity createInstance(Vector2f position, Vector2f velocity, Sprite sprite, World world) {
-            return new Player(position, Zero, sprite, world, this);
+        public Entity createInstance(Vector2f position, Vector2f velocity, Vector2f size, World world) {
+            return new Player(position, velocity, size, world, this);
         }
     },
     Enemy("enemyShip.png") {
         @Override
-        public Entity createInstance(Vector2f position, Vector2f velocity, Sprite sprite, World world) {
-            return new Entity(position, Zero, sprite, world, this);
+        public Entity createInstance(Vector2f position, Vector2f velocity, Vector2f size, World world) {
+            return new Entity(position, velocity, size, world, this);
         }
     },
     Projectile("shot.png") {
         @Override
-        public Entity createInstance(Vector2f position, Vector2f velocity, Sprite sprite, World world) {
-            return new Entity(position, Zero, sprite, world, this);
+        public Entity createInstance(Vector2f position, Vector2f velocity, Vector2f size, World world) {
+            return new Projectile(position, velocity, size, world, this);
+        }
+    },
+    Background("starfield.png") {
+        @Override
+        public Entity createInstance(Vector2f position, Vector2f velocity, Vector2f size, World world) {
+            return new Entity(position, velocity, size, world, this);
         }
     };
 
-    protected String image;
+    protected Image image;
 
-    EntityType(String image) {
-        this.image = image;
+    EntityType(String imageName) {
+        this.image = fromFile(imageName);
     }
 
-    public String image() {
+    private static Image fromFile(String fileName){
+        ImageLoader loader = new ImageLoader();
+        return loader.loadImage(fileName);
+    }
+
+    public Image image() {
         return image;
     }
 
-    public abstract Entity createInstance(Vector2f position, Vector2f velocity, Sprite sprite, World world);
+    public abstract Entity createInstance(Vector2f position, Vector2f velocity, Vector2f size, World world);
+
+    public float width() {
+        return image.getWidth(null);
+    }
+
+    public float height() {
+        return image.getHeight(null);
+    }
 }

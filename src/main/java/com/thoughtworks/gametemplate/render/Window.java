@@ -16,7 +16,6 @@ public class Window extends JFrame {
         this.size = size;
     }
 
-
     @Override
     public void paint(Graphics graphics) {
         renderer.draw(graphics);

@@ -1,27 +1,35 @@
 package com.thoughtworks.gametemplate.render;
 
 
-import java.awt.Graphics;
-import java.util.List;
+import com.thoughtworks.gametemplate.game.Entity;
+import com.thoughtworks.gametemplate.game.Vector2f;
+
+import java.awt.*;
+import java.util.Map;
 
 public class Renderer {
-    private List<Sprite> sprites;
+    private Image background;
+    private Map<Entity, Image> entitiesToSprites;
 
-    public Renderer(List<Sprite> sprites) {
-        this.sprites = sprites;
+    public Renderer(Image background, Map<Entity, Image> entitiesToSprites) {
+        this.background = background;
+        this.entitiesToSprites = entitiesToSprites;
     }
 
     public void draw(Graphics graphics) {
-        for (Sprite sprite : sprites) {
-            sprite.draw(graphics);
+        graphics.drawImage(background, 0, 0, null);
+        for (Entity entity : entitiesToSprites.keySet()) {
+            Image image  = entitiesToSprites.get(entity);
+            Vector2f position = entity.position();
+            graphics.drawImage(image, position.x(), position.y(), null);
         }
     }
 
-    public void addSprite(Sprite sprite) {
-        sprites.add(sprite);
+    public void addSprite(Entity entity, Image sprite) {
+        entitiesToSprites.put(entity, sprite);
     }
 
-    public void remove(Sprite sprite) {
-        sprites.remove(sprite);
+    public void remove(Entity entity) {
+        entitiesToSprites.remove(entity);
     }
 }

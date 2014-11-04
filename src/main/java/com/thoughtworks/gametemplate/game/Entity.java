@@ -1,18 +1,18 @@
 package com.thoughtworks.gametemplate.game;
 
-import com.thoughtworks.gametemplate.render.Sprite;
+import static com.thoughtworks.gametemplate.game.EntityType.Projectile;
 
 public class Entity {
     private Vector2f position;
     private Vector2f velocity;
-    private Sprite sprite;
     protected World world;
     private EntityType type;
+    private Vector2f size;
 
-    public Entity(Vector2f position, Vector2f velocity, Sprite sprite, World world, EntityType type) {
+    public Entity(Vector2f position, Vector2f velocity, Vector2f size, World world, EntityType type) {
         this.position = position;
         this.velocity = velocity;
-        this.sprite = sprite;
+        this.size = size;
         this.world = world;
         this.type = type;
     }
@@ -20,7 +20,10 @@ public class Entity {
 
     public void move(){
         position = position.plus(velocity);
-        sprite.move(position);
+    }
+
+    public Vector2f position() {
+        return position;
     }
 
     public void velocity(Vector2f velocity) {
@@ -29,17 +32,13 @@ public class Entity {
 
     public Box desiredLocation() {
         Vector2f desiredPosition = position.plus(velocity);
-        return new Box(desiredPosition, desiredPosition.plus(sprite.width(), sprite.height()));
+        return new Box(desiredPosition, desiredPosition.plus(size));
     }
 
     public void fire() {
-        Vector2f spawnLocation = position.plus(sprite.width()/2, 0);
-        Entity missile = world.spawnEntity(EntityType.Projectile, spawnLocation);
+        Vector2f spawnLocation = position.plus(size.x()/2, 0);
+        Entity missile = world.spawnEntity(Projectile, spawnLocation);
         missile.velocity(new Vector2f(0, -10));
-    }
-
-    public Sprite sprite() {
-        return sprite;
     }
 
     public boolean isType(EntityType type) {
