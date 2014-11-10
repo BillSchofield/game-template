@@ -3,6 +3,10 @@ package com.thoughtworks.gametemplate.game;
 import com.thoughtworks.gametemplate.game.entities.World;
 import com.thoughtworks.gametemplate.rendering.*;
 
+/*
+    Controls the lifespan and coordination of the game
+*/
+
 public class Game {
     private World world;
     private Window window;

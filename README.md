@@ -1,6 +1,19 @@
 game-template
 =============
 
+## Playing the Game
+'a'     Move player ship left
+'d'     Move player ship right
+<Space> Fire missile from player ship
+'q'     Quit Game
+
+
+## Which classes do what...
+The behavior of the enemy ship, which is currently nothing, lives in com.thoughtworks.gametemplate.game.entities.Enemy
+The EnemyFactory class creates new Enemies. This is called in World.update.
+
+
+
 ## Advice on how to succeed
 * Work in pairs (you don't have to, but it usually let's you get more done)
 * Make whatever assumptions you like about how to implement these features. You can also ask for more details if you like. 

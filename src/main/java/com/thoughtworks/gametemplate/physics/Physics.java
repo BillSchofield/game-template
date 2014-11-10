@@ -15,7 +15,18 @@ public class Physics {
     }
 
 
-    public void collideEntities(List<Entity> entities) {
+    public void move(List<Entity> entities) {
+        collide(entities);
+        updatePosition(entities);
+    }
+
+    private void updatePosition(List<Entity> entities) {
+        for (Entity entity : entities) {
+            entity.move();
+        }
+    }
+
+    private void collide(List<Entity> entities) {
         for (Entity firstEntity : entities) {
             Box firstEntityBounds = firstEntity.desiredLocation();
             for (Entity secondEntity : entities) {
@@ -26,7 +37,5 @@ public class Physics {
                 }
             }
         }
-
     }
-
 }

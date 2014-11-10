@@ -6,7 +6,10 @@ import com.thoughtworks.gametemplate.rendering.Renderer;
 
 import java.util.List;
 import java.util.Random;
+/*
 
+    Owns entities and controls their lifespan
+ */
 public class World {
     private final EntityFactory spawner;
     private List<Entity> entities;
@@ -28,20 +31,18 @@ public class World {
     }
 
     public void update() {
-        double deltaTime = deltaTime();
+        double deltaTimeInSeconds = deltaTimeInSeconds();
 
         cleanupGraveyard();
 
-        spawnEnemy(deltaTime);
+        spawnEnemy(deltaTimeInSeconds);
 
-        updateEntities(deltaTime);
+        updateEntities(deltaTimeInSeconds);
 
-        physics.collideEntities(entities);
-
-        moveEntities();
+        physics.move(entities);
     }
 
-    private double deltaTime() {
+    private double deltaTimeInSeconds() {
         long time = System.nanoTime();
         double deltaTime = (double)(time - lastTime) / 1000000000.0;
         lastTime = time;
@@ -61,12 +62,6 @@ public class World {
     private void updateEntities(double deltaTime) {
         for (Entity entity : entities) {
             entity.update(deltaTime);
-        }
-    }
-
-    private void moveEntities() {
-        for (Entity entity : entities) {
-            entity.move();
         }
     }
 
