@@ -1,18 +1,29 @@
 game-template
 =============
+## Getting Started
+* Fork the Game Template Project into your GitHub and clone it to your computer
+* Import the project in IntelliJ
+* Choose 'Import Project' at the IntelliJ Welcome screen
+* Select the directory that you clone the project into
+* Click the 'Import Project from External Model' radio button
+* Select 'Gradle' from the options given and click 'Next'
+* Select the 'Use customizable Gradle wrapper' radio button and click 'Finish'
+* You may have to wait for a couple of libraries to download
+* Run the main method
+* Open the Main.java class and hit Ctrl-Shift-F10
+* You may need to select a JDK. In Linux and Windows, this is where you put the JDK when you installed it. In OSX, the JDK was installed in '/Library/Java/JavaVirtualMachines'
+* You should see some space ships
 
 ## Playing the Game
-'a'     Move player ship left
-'d'     Move player ship right
-<Space> Fire missile from player ship
-'q'     Quit Game
+* 'a'     Move player ship left
+* 'd'     Move player ship right
+* <Space> Fire missile from player ship
+* 'q'     Quit Game
 
 
 ## Which classes do what...
-The behavior of the enemy ship, which is currently nothing, lives in com.thoughtworks.gametemplate.game.entities.Enemy
-The EnemyFactory class creates new Enemies. This is called in World.update.
-
-
+* The behavior of the enemy ship, which is currently nothing, lives in com.thoughtworks.gametemplate.game.entities.Enemy
+* The EnemyFactory class creates new Enemies. This is called in World.update.
 
 ## Advice on how to succeed
 * Work in pairs (you don't have to, but it usually let's you get more done)
