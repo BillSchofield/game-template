@@ -1,6 +1,7 @@
 package com.thoughtworks.gametemplate.game;
 
-import com.thoughtworks.gametemplate.render.*;
+import com.thoughtworks.gametemplate.game.entities.World;
+import com.thoughtworks.gametemplate.rendering.*;
 
 public class Game {
     private World world;

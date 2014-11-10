@@ -1,8 +1,8 @@
-package com.thoughtworks.gametemplate.render;
+package com.thoughtworks.gametemplate.rendering;
 
 
-import com.thoughtworks.gametemplate.game.Entity;
-import com.thoughtworks.gametemplate.game.Vector2f;
+import com.thoughtworks.gametemplate.game.entities.Entity;
+import com.thoughtworks.gametemplate.game.entities.Vector2f;
 
 import java.awt.*;
 import java.util.Map;

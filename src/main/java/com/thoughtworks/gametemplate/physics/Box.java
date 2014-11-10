@@ -1,4 +1,6 @@
-package com.thoughtworks.gametemplate.game;
+package com.thoughtworks.gametemplate.physics;
+
+import com.thoughtworks.gametemplate.game.entities.Vector2f;
 
 public class Box {
     private final Vector2f min;

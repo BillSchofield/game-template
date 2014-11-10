@@ -1,4 +1,4 @@
-package com.thoughtworks.gametemplate.render;
+package com.thoughtworks.gametemplate.rendering;
 
 import javax.swing.*;
 import java.awt.*;

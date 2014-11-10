@@ -1,6 +1,6 @@
-package com.thoughtworks.gametemplate.render;
+package com.thoughtworks.gametemplate.rendering;
 
-import com.thoughtworks.gametemplate.game.Vector2f;
+import com.thoughtworks.gametemplate.game.entities.Vector2f;
 
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;

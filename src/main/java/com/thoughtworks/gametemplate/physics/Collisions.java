@@ -1,9 +1,11 @@
-package com.thoughtworks.gametemplate.game;
+package com.thoughtworks.gametemplate.physics;
+
+import com.thoughtworks.gametemplate.game.entities.Entity;
 
 import java.util.List;
 
 import static com.google.common.collect.Lists.newArrayList;
-import static com.thoughtworks.gametemplate.game.Collision.ProjectileAndEnemyCollision;
+import static com.thoughtworks.gametemplate.physics.Collision.ProjectileAndEnemyCollision;
 
 public class Collisions {
 

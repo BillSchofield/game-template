@@ -21,16 +21,16 @@ game-template
 * I can move my ship left and right but it never moves off the screen
 * I can fire a missile (that moves straight up) from my ship
 * When a missile touches an enemy ship that ship is destroyed
+* Instead of the initial enemy a new enemy appears every two seconds
 
 ## Features
-* The enemy ship (Bouncer) starts at the top left corner of screen and bounces between the edges of the screen
-* There is a second enemy ship that starts at the top right corner of the screen
-* The second enemy ship (Wanderer) moves randomly around the screen (in both the x and y directions), but never moves off the screen
+* The enemy ship, called a Bouncer, starts near the top of screen and bounces between the edges of the screen
+* Half of the new ships that appear are a second kind of enemy ship, called a Wanderer. Which moves randomly around the
+    screen (in both the x and y directions), but never moves off the screen
 * The Bouncer drops Bombs that move straight down
 * The game ends when an enemy projectile hits my ship
 * The Wanderer fires Roving Missiles move down and randomly shift left or right
-* Instead of the initial two enemies a new enemy appears every second alternating between Bouncers and Wanderers
-* The new enemy that appears can move like a Bouncer or a Wanderer and fires either Bombs or Roving Missiles 
+* The new enemy that appears moves like a Bouncer or a Wanderer (choose randomly) and fires either Bombs or Roving Missiles
 * Enemy ships can also move in a circle (Circler)
 * The game ends when an enemy ship hits my ship
 * Enemy ships can teleport closer to my ship instead of firing (Seeker)

@@ -1,7 +1,7 @@
 package com.thoughtworks.gametemplate;
 
 
-import com.thoughtworks.gametemplate.game.Vector2f;
+import com.thoughtworks.gametemplate.game.entities.Vector2f;
 
 public class Main {
     public static void main(String[] args) throws InterruptedException {

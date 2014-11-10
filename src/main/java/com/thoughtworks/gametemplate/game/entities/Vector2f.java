@@ -1,4 +1,4 @@
-package com.thoughtworks.gametemplate.game;
+package com.thoughtworks.gametemplate.game.entities;
 
 public class Vector2f {
     public static Vector2f Zero = new Vector2f(0, 0);

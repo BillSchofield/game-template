@@ -1,6 +1,7 @@
 package com.thoughtworks.gametemplate.game;
 
 
+import com.thoughtworks.gametemplate.game.entities.Vector2f;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;
